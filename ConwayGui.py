@@ -32,13 +32,4 @@ class StartButton(Frame):
         self.start["command"] = self.beginLife
         
         self.start.pack(anchor=CENTER)
-    
 
-root = rootWindow = Tk()
-start = StartButton(rootWindow)
-    
-root.geometry('300x200+40+40')
-
-root.title("Conway's Game of Life")
-
-root.mainloop()
