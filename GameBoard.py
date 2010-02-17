@@ -1,3 +1,4 @@
+#Written by Yeison Rodriguez
 from LifeGrid import *
 from random import randint
 

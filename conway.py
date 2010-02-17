@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#Written by Yeison Rodriguez
 #This script runs Conway's Game of Life
 #Requirements: Python 2.6 and Tcl/Tk (Most Linux systems have this).
 #Run the script from a command line, and provide the board dimensions.

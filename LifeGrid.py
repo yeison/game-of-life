@@ -1,3 +1,4 @@
+#Written by Yeison Rodriguez
 from Tkinter import *
 from math import sin, cos, pi, sqrt
 import sys
