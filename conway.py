@@ -1,3 +1,4 @@
 from GameBoard import GameBoard
 
-gameBoard = GameBoard(40, 5)
+gameBoard = GameBoard(10, 10)
+

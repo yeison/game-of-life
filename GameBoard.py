@@ -22,19 +22,31 @@ class GameBoard(Frame):
         self.start.pack_forget()
 
         #Binary arrays will represent life
-        life = self.twoDArray(self.width, self.height)
+        self.life = self.twoDArray(self.width, self.height)
         for i in range(1, self.width - 1):
             for j in range(1, self.height - 1):
-                life[i][j] = randint(0,1)*randint(0,1)
+                self.life[i][j] = randint(0,1)*randint(0,1)
         
-        nextLife = self.twoDArray(self.width, self.height)
+        self.nextLife = self.twoDArray(self.width, self.height)
 
         #Initiate a new lifegrid (gui) in the parent window.        
         self.grid = LifeGrid(self.master)
         
-        self.updateGui(life)
-        life = lifeCycle(life, nextLife)
-        nextLife = twoDArray
+        self.updateGui(self.life)
+
+        next = Button(self.frame)
+        next["text"] = "Next Life"
+        next["command"] = self.nextCycle
+        
+        next.pack(anchor=NE)
+        
+    def nextCycle(self):
+        self.life = self.lifeCycle(self.life, self.nextLife)
+        self.grid.destroy()
+        self.grid = LifeGrid(self.master)
+        self.updateGui(self.life)        
+        self.nextLife = self.twoDArray(self.width, self.height)
+
         
     def lifeCycle(self, life, nextLife):
         for i in range(1, self.width-1):
@@ -43,11 +55,14 @@ class GameBoard(Frame):
                     cell = LiveCell(i, j)
                     if(cell.isAliveNext(life)):
                         nextLife[i][j] = 1
+                    else:
+                        nextLife[i][j] = 0
                 else:
                     cell = DeadCell(i, j)
                     if(cell.isAliveNext(life)):
                         nextLife[i][j] = 1
-        self.updateGui(life)
+                    else:
+                        nextLife[i][j] = 0
         return nextLife
 
                      
@@ -60,10 +75,10 @@ class GameBoard(Frame):
         dimensions = "+40+40"
         gameWindow.geometry(dimensions)
 
-        frame = Frame(gameWindow)
-        frame.pack()
+        self.frame = Frame(gameWindow)
+        self.frame.pack()
 
-        self.start = Button(frame)
+        self.start = Button(self.frame)
         self.start["text"] = "Start"
         self.start["command"] = self.beginLife
         

@@ -5,18 +5,18 @@ import sys
 class LifeGrid(Frame):
     
     def makeLiveCell(self, i, j):
-        cell = Button(self.frame, bitmap="gray75", fg="red")
+        cell = Button(self, bitmap="gray75", fg="red")
         cell.grid(column=i, row=j)
         #self.nextLife[i, j] = 1
     
     def makeDeadCell(self, i, j):
-        cell = Button(self.frame, bitmap="gray12")
+        cell = Button(self, bitmap="gray12")
         cell.grid(column=i, row=j)
         #self.nextLife[i, j] = 0
         
-    def __init__(self, master):
-        self.frame = Frame(master)
-        self.frame.pack()
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.pack()
 
 
 class Cell:
@@ -28,20 +28,14 @@ class Cell:
             if(i%2):
                 d = sqrt(2)
             theta = (i*pi)/4
-            x = self.i + int(d*cos(theta))
-            y = self.j + int(d*sin(theta))
-            try:
+            x = int(self.i + d*cos(theta))
+            y = int(self.j + d*sin(theta))
             #If the neighbor at x,y is alive
-                if(binaryGrid[x, y]):
+            if(binaryGrid[x][y]):
                 #increase number of neighbors
-                    self.neighbors += 1
-                    if(self.neighbors > 8):
-                        print >> sys.stderr, "Too many neighbors."
-            except TypeError as e:
-                return None
-            
-
-    
+                self.neighbors += 1
+                if(self.neighbors > 8):
+                    print >> sys.stderr, "Too many neighbors."
 
         return self.neighbors
                         
