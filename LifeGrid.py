@@ -16,7 +16,6 @@ class LifeGrid(Frame):
         
     def __init__(self, master=None):
         Frame.__init__(self, master)
-        self.pack()
 
 
 class Cell:
@@ -61,4 +60,3 @@ class DeadCell(Cell):
             return True
         else:
             return False
-        

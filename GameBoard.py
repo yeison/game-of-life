@@ -9,6 +9,8 @@ class GameBoard(Frame):
         return [[0 for i in range(height+1+1)] for i in range(width+1+1)]
 
     def updateGui(self, binaryGrid):
+        oldgrid = self.grid
+        self.grid = LifeGrid(self.frame)
         #Update the gui grid with data from the binary grid
         for i in range(self.width):
             for j in range(self.height):
@@ -16,6 +18,8 @@ class GameBoard(Frame):
                     self.grid.makeLiveCell(i, j)
                 else:
                     self.grid.makeDeadCell(i, j)
+        self.grid.pack()
+        oldgrid.destroy()
   
     def beginLife(self):
         #Remove the start button
@@ -29,21 +33,20 @@ class GameBoard(Frame):
         
         self.nextLife = self.twoDArray(self.width, self.height)
 
-        #Initiate a new lifegrid (gui) in the parent window.        
-        self.grid = LifeGrid(self.master)
-        
-        self.updateGui(self.life)
+        #Initiate a new lifegrid (gui) in the parent window.
 
         next = Button(self.frame)
         next["text"] = "Next Life"
+        next.pack(anchor=NE)        
         next["command"] = self.nextCycle
         
-        next.pack(anchor=NE)
+        self.grid = LifeGrid(self.master)
+        
+        self.updateGui(self.life)
+        
         
     def nextCycle(self):
         self.life = self.lifeCycle(self.life, self.nextLife)
-        self.grid.destroy()
-        self.grid = LifeGrid(self.master)
         self.updateGui(self.life)        
         self.nextLife = self.twoDArray(self.width, self.height)
 
