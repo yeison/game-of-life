@@ -16,14 +16,14 @@ if(numberOfInputs == 3 ):
 
 #If the input is not 2 values, set default values.
 else:
-    x = 10
-    y = 10
+    x = 15
+    y = 15
 
 
 try:
     gameBoard = GameBoard(int(x), int(y))
 #If the values cannot be cast to integers, set default values.
 except ValueError as e:
-    x = 10
-    y = 10
+    x = 15
+    y = 15
     gameBoard = GameBoard(x, y)
