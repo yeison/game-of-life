@@ -1,0 +1,5 @@
+#The script conway.py runs Conway's Game of Life                                        
+#Requirements: Python 2.6 and Tcl/Tk (Most Linux systems have this).           
+#Run the script from a command line, and provide the board dimensions.         
+#Example: 'python conway.py 15 15'                                             
+#A 'Start' button will appear in the upper left corner of your screen. 

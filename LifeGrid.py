@@ -59,4 +59,6 @@ class DeadCell(Cell):
         neighbors = self.probeNeighbors(binaryGrid)
         if(neighbors == 3):
             return True
+        else:
+            return False
         
